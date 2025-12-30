@@ -1,11 +1,18 @@
 import "./globals.css";
 
-export const metadata = {
-  title: "ValianceSecurity Dashboard",
-  description: "Security dashboard",
+import type { Metadata } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "Valiance Security - Enterprise Dashboard",
+  description: "Advanced Discord security system with comprehensive protection",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="it">
       <body>{children}</body>

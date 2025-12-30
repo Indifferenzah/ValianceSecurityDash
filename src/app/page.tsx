@@ -1,34 +1,22 @@
 "use client";
-import { useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export default function LoginPage() {
-  const [u, setU] = useState("");
-  const [p, setP] = useState("");
-  const [err, setErr] = useState("");
+export default function HomePage() {
   const router = useRouter();
 
-  async function onSubmit(e:any) {
-    e.preventDefault();
-    const r = await fetch("/api/proxy/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username: u, password: p })
-    });
-    if (!r.ok) {
-      const j = await r.json().catch(() => ({}));
-      setErr(j.error ?? "Login failed");
-      return;
-    }
-    router.push("/dashboard");
-  }
+  useEffect(() => {
+    // Redirect to login
+    router.push("/login");
+  }, [router]);
 
   return (
-    <form onSubmit={onSubmit}>
-      <input value={u} onChange={e=>setU(e.target.value)} />
-      <input type="password" value={p} onChange={e=>setP(e.target.value)} />
-      <button type="submit">Login</button>
-      <div>{err}</div>
-    </form>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto"></div>
+        <p className="text-white mt-4">Redirecting...</p>
+      </div>
+    </div>
   );
 }
+
